@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinCalc - Islamic Financial Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light-green d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+        <div class="container">
+            <span class="navbar-brand fw-bold text-dark-green fs-4">FinCalc 💰</span>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav nav-pills gap-2 mt-3 mt-lg-0" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="pill" data-bs-target="#home" type="button" role="tab" aria-selected="true">Home</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="compound-tab" data-bs-toggle="pill" data-bs-target="#compound" type="button" role="tab" aria-selected="false">Compound Interest</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="savings-tab" data-bs-toggle="pill" data-bs-target="#savings" type="button" role="tab" aria-selected="false">Savings Goal</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="about-tab" data-bs-toggle="pill" data-bs-target="#about" type="button" role="tab" aria-selected="false">About</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1">
+        <div class="tab-content" id="myTabContent">
+            
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                <div class="text-center py-5">
+                    <h1 class="display-5 fw-bold text-dark-green mb-3">Islamic Financial Calculator</h1>
+                    <p class="lead text-muted fst-italic mb-5">"Never put all your eggs in the same basket" 🥚🥚🥚</p>
+                    
+                    <div class="row g-4 justify-content-center mt-3">
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm border-light-green p-3">
+                                <div class="card-body">
+                                    <h5 class="fw-bold text-accent-green mb-3">Shariah Compliant</h5>
+                                    <p class="card-text text-muted">Calculations built on ethical profit-sharing principles without Riba.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm border-light-green p-3">
+                                <div class="card-body">
+                                    <h5 class="fw-bold text-accent-green mb-3">100% Private</h5>
+                                    <p class="card-text text-muted">Zero tracking or external servers. All math happens locally.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm border-light-green p-3">
+                                <div class="card-body">
+                                    <h5 class="fw-bold text-accent-green mb-3">Year-by-Year Data</h5>
+                                    <p class="card-text text-muted">Visualize your financial growth clearly over time.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="compound" role="tabpanel" aria-labelledby="compound-tab" tabindex="0">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-dark-green">Compound Interest Calculator</h2>
+                </div>
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="row g-5">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark-green">Initial Amount (PKR)</label>
+                                    <input type="number" class="form-control" id="c-amount" value="100000" min="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark-green">Expected Profit Rate (%)</label>
+                                    <input type="number" class="form-control" id="c-rate" value="5" min="0" step="0.1">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark-green">Period (Years)</label>
+                                    <input type="number" class="form-control" id="c-years" value="10" min="1">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold text-dark-green">Compounding Frequency</label>
+                                    <select class="form-select" id="c-freq">
+                                        <option value="12">Monthly</option>
+                                        <option value="4">Quarterly</option>
+                                        <option value="2">Semi-Annually</option>
+                                        <option value="1">Annually</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-accent w-100 py-2 fw-bold" onclick="calculateCompound()">Calculate Growth</button>
+                            </div>
+                            <div class="col-lg-6 d-flex flex-column justify-content-center gap-3">
+                                <div class="p-4 rounded-3 custom-result-card">
+                                    <p class="text-muted mb-1 fw-semibold">Final Amount</p>
+                                    <h3 class="text-dark-green fw-bold mb-0" id="c-res-final">PKR 0</h3>
+                                </div>
+                                <div class="p-4 rounded-3 custom-result-card">
+                                    <p class="text-muted mb-1 fw-semibold">Total Profit Earned</p>
+                                    <h3 class="text-dark-green fw-bold mb-0" id="c-res-profit">PKR 0</h3>
+                                </div>
+                                <div class="p-4 rounded-3 custom-result-card">
+                                    <p class="text-muted mb-1 fw-semibold">Total Growth</p>
+                                    <h3 class="text-dark-green fw-bold mb-0" id="c-res-growth">0%</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="savings" role="tabpanel" aria-labelledby="savings-tab" tabindex="0">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-dark-green">Savings Goal Calculator</h2>
+                </div>
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="row g-5">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark-green">Target Goal Amount (PKR)</label>
+                                    <input type="number" class="form-control" id="s-goal" value="10000000" min="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark-green">Expected Profit Rate (%)</label>
+                                    <input type="number" class="form-control" id="s-rate" value="5" min="0" step="0.1">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold text-dark-green">Time Frame (Years)</label>
+                                    <input type="number" class="form-control" id="s-years" value="10" min="1">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold text-dark-green">Contribution Frequency</label>
+                                    <select class="form-select" id="s-freq">
+                                        <option value="12">Monthly</option>
+                                        <option value="52">Weekly</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-accent w-100 py-2 fw-bold" onclick="calculateSavings()">Calculate Savings Plan</button>
+                            </div>
+                            <div class="col-lg-6 d-flex flex-column justify-content-center gap-3">
+                                <div class="p-4 rounded-3 custom-result-card">
+                                    <p class="text-muted mb-1 fw-semibold">Required Regular Savings</p>
+                                    <h3 class="text-dark-green fw-bold mb-0" id="s-res-payment">PKR 0</h3>
+                                </div>
+                                <div class="p-4 rounded-3 custom-result-card">
+                                    <p class="text-muted mb-1 fw-semibold">Total Contributions</p>
+                                    <h3 class="text-dark-green fw-bold mb-0" id="s-res-principal">PKR 0</h3>
+                                </div>
+                                <div class="p-4 rounded-3 custom-result-card">
+                                    <p class="text-muted mb-1 fw-semibold">Profit Earned from Compounding</p>
+                                    <h3 class="text-dark-green fw-bold mb-0" id="s-res-profit">PKR 0</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab" tabindex="0">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-dark-green">About the Creator</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-7">
+                        <div class="card shadow-sm border-0 text-center">
+                            <div class="card-body p-4 p-md-5">
+                                <h3 class="text-dark-green fw-bold mb-3">Abdul Rafay</h3>
+                                <p class="text-muted fs-5 mb-4 px-lg-3" style="line-height: 1.8;">
+                                    I am a CS student at Air University, a passionate web developer, and an aspiring AI engineer. 
+                                    I built FinCalc to provide a seamless, privacy-first, and Shariah-compliant financial planning tool for the community.
+                                </p>
+                                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                    <a href="https://abdul-rafay-black.vercel.app/" target="_blank" class="btn btn-accent px-4 py-2 fw-semibold text-white">Portfolio</a>
+                                    <a href="https://www.linkedin.com/in/abdulrafayqar/" target="_blank" class="btn text-white px-4 py-2 fw-semibold border-0 brand-linkedin">LinkedIn</a>
+                                    <a href="https://github.com/abdulrafayau" target="_blank" class="btn text-white px-4 py-2 fw-semibold border-0 brand-github">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-4 text-center text-muted">
+        <div class="container border-top pt-4 border-light-green">
+            <p class="mb-0">© 2026 FinCalc by Abdul Rafay | Shariah Compliant | Privacy First</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
